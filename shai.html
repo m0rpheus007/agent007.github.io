@@ -1,25 +1,27 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<title>Get Visitor's Location Using HTML5 Geolocation</title>
-<script>
-    function showPosition() {
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
-                document.getElementById("result").innerHTML = positionInfo;
-            });
-        } else {
-            alert("Sorry, your browser does not support HTML5 geolocation.");
-        }
-    }
-</script>
+	<title>Get User Location</title>
 </head>
 <body>
-    <div id="result">
-        <!--Position information will be inserted here-->
-    </div>
-    <button type="button" onclick="showPosition();">Show Position</button>
+	<p>Click the button to get your live location.</p>
+	<button onclick="getLocation()">Get Location</button>
+	<p id="demo"></p>
+	<script>
+	var x = document.getElementById("demo");
+	function getLocation() {
+	  	if (navigator.geolocation) {
+	    	navigator.geolocation.getCurrentPosition(showPosition);
+	  	} else { 
+	    	x.innerHTML = "Geolocation is not supported by this browser.";
+	  	}
+	}
+
+	function showPosition(position) {
+		console.log(position);
+	  	x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+	}
+	</script>
 </body>
-</html>
+</html> 
